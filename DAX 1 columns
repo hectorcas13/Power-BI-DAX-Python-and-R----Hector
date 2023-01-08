@@ -1,6 +1,16 @@
-Calculate yes responses in one column
+//Calculate yes responses in one column
+
 var __yesCount =
 	CALCULATE(
-		COUNTROWS( T ),
-		KEEPFILTERS( T[Answer] = "Yes" )
+		COUNTROWS( table ),
+		KEEPFILTERS( table[column] = "yes" )
+	)
+
+//CALCULATE THE NUMBER OF ROWS WITH NO BLANKS IN ONE COLUMN
+var __totalCount = 
+	CALCULATE(
+		COUNTROWS( table ),
+		KEEPFILTERS(
+			NOT ISBLANK( table[column] )
+		)
 	)
