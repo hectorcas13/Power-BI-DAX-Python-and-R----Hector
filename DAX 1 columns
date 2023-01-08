@@ -1,0 +1,6 @@
+Calculate yes responses in one column
+var __yesCount =
+	CALCULATE(
+		COUNTROWS( T ),
+		KEEPFILTERS( T[Answer] = "Yes" )
+	)
