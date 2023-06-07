@@ -14,3 +14,8 @@ var __totalCount =
 			NOT ISBLANK( table[column] )
 		)
 	)
+	
+//CALCULATE THE NUMBER OF ROWS WITH TRUE
+	VAR COUNT_EXT = ROUNDUP(INT(CALCULATE(COUNTROWS(Extension), Extension[Extension approved] = "TRUE")),5)
+	return IF(ISBLANK(COUNT_EXT),"0",ROUNDUP(INT(COUNT_EXT),5))
+
