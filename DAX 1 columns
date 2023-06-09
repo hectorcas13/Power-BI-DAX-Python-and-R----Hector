@@ -19,3 +19,8 @@ var __totalCount =
 	VAR COUNT_EXT = ROUNDUP(INT(CALCULATE(COUNTROWS(Extension), Extension[Extension approved] = "TRUE")),5)
 	return IF(ISBLANK(COUNT_EXT),"0",ROUNDUP(INT(COUNT_EXT),5))
 
+//COMPARE DATES BOTH DATES MUST BE IN DATE FORMAT
+VAR x =  TODAY()
+VAR y =    table{column}
+VAR z = IF(x >= y,TRUE,FALSE)
+return z
