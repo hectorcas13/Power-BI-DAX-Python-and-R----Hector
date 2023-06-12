@@ -16,11 +16,11 @@ var __totalCount =
 	)
 	
 //CALCULATE THE NUMBER OF ROWS WITH TRUE
-	VAR COUNT_EXT = ROUNDUP(INT(CALCULATE(COUNTROWS(Extension), Extension[Extension approved] = "TRUE")),5)
+	VAR COUNT_EXT = ROUNDUP(INT(CALCULATE(COUNTROWS(Table), Table[Column] = "TRUE")),5)
 	return IF(ISBLANK(COUNT_EXT),"0",ROUNDUP(INT(COUNT_EXT),5))
 
 //COMPARE DATES BOTH DATES MUST BE IN DATE FORMAT
 VAR x =  TODAY()
-VAR y =    table{column}
+VAR y =    Table[Column] 
 VAR z = IF(x >= y,TRUE,FALSE)
 return z
