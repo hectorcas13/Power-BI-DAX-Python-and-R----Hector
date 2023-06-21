@@ -13,7 +13,7 @@ var __totalCount =
 		KEEPFILTERS(
 			NOT ISBLANK( table[column] )
 		)
-	)
+	) 
 	
 //CALCULATE THE NUMBER OF ROWS WITH TRUE
 	VAR x = ROUNDUP(INT(CALCULATE(COUNTROWS(Table), Table[Column] = "TRUE")),5)
@@ -24,3 +24,10 @@ VAR x =  TODAY()
 VAR y =    Table[Column] 
 VAR z = IF(x >= y,TRUE,FALSE)
 return z
+
+//SUM A COLUMN OF A TABLE WITH A CONDITION FROM ANOTHER TABLE 
+VAR x = CALCULATE(
+SUMX(FILTER(Table,  Table[Column] = "condition"), Table[Column] ) )
+return IF(ISBLANK(x),"0",ROUNDUP(INT(x),5))
+
+
