@@ -1,3 +1,8 @@
+#This code shows how to create a likert visual using python and Power BI
+#You got to have an unpivot columns named Question and Responses, Question will contain the questions of the survey -
+# - And responses will contain values from 1 to 4 (Strongly Agree, Agree, Disagree, Strongly Disagree)
+
+
 # Import required libraries
 import pandas as pd
 import matplotlib.pyplot as plt
