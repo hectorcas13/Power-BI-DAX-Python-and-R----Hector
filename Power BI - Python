@@ -1,0 +1,55 @@
+# Import required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Adjust seaborn settings for font and font scale
+sns.set(font='Open Sans', font_scale=1.4)
+
+
+# Data input from Power BI
+data = dataset[['Question', 'Responses']].copy()
+
+# Convert 'Responses' column to numeric values (assuming it contains integers from 1 to 4)
+data['Responses'] = pd.to_numeric(data['Responses'])
+
+# Map the numeric responses to the corresponding Likert scale labels
+likert_scale_labels = {
+    1: 'Strongly Disagree',
+    2: 'Disagree',
+    3: 'Agree',
+    4: 'Strongly Agree'
+}
+
+data['Responses'] = data['Responses'].map(likert_scale_labels)
+
+# Create a pivot table to aggregate the responses for each question
+pivot_table = data.pivot_table(index='Question', columns='Responses', aggfunc='size', fill_value=0)
+
+# Reorder the columns in the pivot table for plotting
+column_order = ['Strongly Disagree', 'Disagree', 'Agree', 'Strongly Agree']
+pivot_table = pivot_table.reindex(columns=column_order)
+
+# Calculate the total count of responses for each question
+pivot_table['Total'] = pivot_table.sum(axis=1)
+
+# Calculate the percentage of responses for each category
+for col in pivot_table.columns:
+    pivot_table[col] = pivot_table[col] / pivot_table['Total']
+
+# Create the Likert plot
+plt.figure(figsize=(12, 6))
+ax = sns.heatmap(pivot_table[column_order], annot=True, cmap='Blues', fmt=".1%", cbar=False)
+ax.set_yticklabels(ax.get_yticklabels(), rotation=0)
+plt.title('Likert - Level of satisfaction')
+plt.xlabel('')
+plt.ylabel('')
+
+# Adjust the space between subplots
+plt.subplots_adjust(wspace=0.3)
+
+# Adjust the width of the "Question" labels for better readability
+plt.tight_layout()
+
+# Show the plot
+plt.show()
