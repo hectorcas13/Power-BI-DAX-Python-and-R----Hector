@@ -1,0 +1,7 @@
+#Last update for a dashboard
+
+1. Open blank query in Power query
+2. copy = DateTime.LocalNow()
+3. Convert to table
+4. Change to date or datetime format
+3. close and apply
