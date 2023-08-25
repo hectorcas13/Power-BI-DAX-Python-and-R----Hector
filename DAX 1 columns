@@ -26,8 +26,12 @@ VAR z = IF(x >= y,TRUE,FALSE)
 return z
 
 //SUM A COLUMN OF A TABLE WITH A CONDITION FROM ANOTHER TABLE 
-VAR x = CALCULATE(
-SUMX(FILTER(Table,  Table[Column] = "condition"), Table[Column] ) )
-return IF(ISBLANK(x),"0",ROUNDUP(INT(x),5))
+measure =
+Var x = CALCULATE(
+	COUNTROWS(table1), 
+    	Table1 = "xxxx",
+    	Table2 = "xxxx" 
+	)
+    return IF(ISBLANK(x),"0",ROUNDUP(INT(x),5))
 
 
